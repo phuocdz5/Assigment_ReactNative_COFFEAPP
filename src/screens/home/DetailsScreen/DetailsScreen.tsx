@@ -10,27 +10,38 @@ const DetailsScreen = ({route}:any) => {
     const [idProduct,setId]= useState('');
     const [image,setImage]= useState('');
     const {data} = route.params
+    const dataArray = data[0] ;
+    const itemId = data[1] ; 
     
-    useEffect(()=>{
-        const dataArray = data[0] ;
-        const itemId = data[1] ; 
-        setId(itemId)
-        setData(dataArray)
-
-    },[])
+    
+    useEffect(() => {
+      const fetchData = async () => {
+        setData(dataArray);
+        setId(itemId);
+        await handleImage();
+      };
+    
+      fetchData();
+    }, [ dataProduct, idProduct]);
+    
     const filteredCoffeeArray =(value:String)=>{
-        return dataProduct.filter(item => item._id.toString() === value)
+      return dataProduct.filter(item => item._id.toString() === value)
     }
 
-    const specificKeyArray = filteredCoffeeArray(idProduct).map(product => product.name);
-    
-    
+  
+    const handleImage = ()=>{
+      const specificKeyItem = filteredCoffeeArray(idProduct).find(product => product !== undefined && product !== null);
+      if(specificKeyItem){
+        const { name, _id, prices, imagelink_portrait } = specificKeyItem;
+        setImage(imagelink_portrait.valueOf()) 
+
+      }
+    }
 
   return (
     <View>
-        <TextComponent color='red' styles={{margin:50}} text={`${specificKeyArray}`}/>
-    </View>
+      <Image style={{width:'auto',height:510}} src={image}/>
+    </View> 
   )
 }
-
 export default DetailsScreen
