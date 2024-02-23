@@ -5,7 +5,7 @@ import COLORS from '../assets/colors/Colors';
 import { globalStyle } from '../styles/globalStyle';
 
 interface Props {
-    text: string;
+    text: string|undefined;
     color?: string;
     size?: number;
     flex?: number;

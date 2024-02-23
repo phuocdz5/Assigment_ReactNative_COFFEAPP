@@ -4,6 +4,9 @@ import KeyboardAvoidingWrapper from "./KeyboardAvoidingWrapper";
 import RowComponent from "./RowComponent";
 import SectionComponent from "./SectionComponent";
 import TextComponent from "./TextComponent";
+import CardItemComponent from './CardItemComponent';
+import CategoriesList from './CategoriesList ';
+import ContainerComponent from './ContainerComponent';
 
 export {
     TextComponent, 
@@ -12,4 +15,7 @@ export {
     SectionComponent,
     KeyboardAvoidingWrapper,
     RowComponent,
+    CardItemComponent,
+    CategoriesList,
+    ContainerComponent
 };

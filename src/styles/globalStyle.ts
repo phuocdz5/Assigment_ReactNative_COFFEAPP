@@ -18,12 +18,12 @@ export const globalStyle = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: COLORS.HEX_ORANGE,
         paddingHorizontal: 10,
-        minHeight: 56,
+        minHeight: 30,
         flexDirection: 'row'
     },
     section: {
-        paddingHorizontal: 15,
-        paddingBottom: 20,
+        paddingHorizontal:15,
+        paddingBottom:15
     }, 
     row: {
         flexDirection: 'row',

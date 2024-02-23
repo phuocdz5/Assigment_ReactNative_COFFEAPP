@@ -190,6 +190,7 @@ const SignUpScreen = ({ navigation }: any) => {
           <ButtonComponent
             text='ĐĂNG KÝ'
             type='orange'
+            styles={{height:56}}
             onPress={handleRegister}
             disable={isDisable} />
         </SectionComponent>

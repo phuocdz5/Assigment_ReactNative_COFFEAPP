@@ -23,7 +23,7 @@ const LoginScreen = ({navigation}: any) => {
     // Lấy dữ liệu
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isRemember, setIsRemember] = useState(false);
+    const [isRemember, setIsRemember] = useState(true);
     const [isDisable, setIsDisable] = useState(true);
     const dispatch = useDispatch();
 
@@ -90,8 +90,8 @@ const LoginScreen = ({navigation}: any) => {
                     affix={<Lock size={22} color={COLORS.HEX_LIGHT_GREY} />} />
             </SectionComponent>
             <SectionComponent>
-                <RowComponent justify='space-between'>
-                    <RowComponent onPress={() => setIsRemember(!isRemember)}>
+                <RowComponent  justify='space-between'>
+                    <RowComponent  onPress={() => setIsRemember(!isRemember)}>
                         <Switch
                             trackColor={{ false: COLORS.WHITE, true: COLORS.HEX_ORANGE }}
                             thumbColor={isRemember ? COLORS.WHITE : COLORS.HEX_ORANGE}
@@ -109,7 +109,8 @@ const LoginScreen = ({navigation}: any) => {
                 <ButtonComponent 
                     disable= {isDisable}
                     text='ĐĂNG NHẬP' 
-                    type='orange' 
+                    type='orange'
+                    styles={{height:56}}
                     onPress={handleLogin}/>
             </SectionComponent>
             <SectionComponent>
@@ -130,7 +131,7 @@ const LoginScreen = ({navigation}: any) => {
                         styles = {{
                             backgroundColor: COLORS.WHITE, 
                             flex: 1, 
-                            marginRight: 7}}
+                            marginRight: 7, height:56}}
                         textColor={COLORS.HEX_LIGHT_GREY}
                         icon ={<Google/>}
                         />
@@ -138,7 +139,7 @@ const LoginScreen = ({navigation}: any) => {
                         text='Facebook' 
                         iconFlex='left'
                         type='orange'
-                        styles = {{backgroundColor: COLORS.WHITE, flex: 1}}
+                        styles = {{backgroundColor: COLORS.WHITE, flex: 1, height:56}}
                         textColor={COLORS.HEX_LIGHT_GREY}
                         icon= {<Facebook/>}/>    
 

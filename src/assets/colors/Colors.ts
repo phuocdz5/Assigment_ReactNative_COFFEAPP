@@ -7,6 +7,9 @@ const COLORS = {
     HEX_LIGHT_GREY: '#AEAEAE',
     WHITE : '#FFFFFF',
     RED : 'red',
+    BRUNT_ORANGE:'#D17842',
+    primaryGreyHex: '#252A32',
+    primaryBlackHex: '#0C0F14',
     
 }
 

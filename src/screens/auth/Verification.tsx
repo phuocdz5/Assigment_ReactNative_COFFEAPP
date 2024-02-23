@@ -185,7 +185,7 @@ const Verification = ({ navigation, route }: any) => {
                     onPress={handleVerification}
                     text='Tiếp Tục' 
                     type='orange' 
-                    styles={{ width: '80%' }}
+                    styles={{ width: '80%',height:56 }}
                      />
             </SectionComponent>
             {errorMessage && (
