@@ -14,6 +14,8 @@ const IMAGES = {
     dolaMoney:require('./dolaMoney.png'),
     iconTagCoffee:require('./iconTagCoffee.png'),
     imageRobustaBeans:"https://i.imgur.com/nfoyUeD.png",
+    Back_Icon: require('./back_icon.png'),
+    Profile: require('./profile.png'),
 }
 
 export default IMAGES;

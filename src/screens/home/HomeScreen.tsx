@@ -38,15 +38,11 @@ const HomeScreen = ({navigation}:any) => {
     return (
         <ContainerComponent isScroll>
             <SectionComponent styles={{marginTop:55}}>
-            {/* <Button title='Logout' onPress={async () => {
-                    await AsyncStorage.setItem('auth', auth.email);
-                    dispatch(removeAuth({}));
-            }}/> */}
                 <RowComponent justify='space-between'>
-                    <TouchableOpacity>
-                        <Image source={IMAGES.iconTienIchHome}/>
+                    <TouchableOpacity onPress={() => {navigation.navigate('SettingScreen')}}>
+                        <Image source={IMAGES.iconTienIchHome} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => {navigation.navigate('PersonalDetailsScreen')}}>
                         <Image source={IMAGES.avtUser}/>
                     </TouchableOpacity>
                 </RowComponent>

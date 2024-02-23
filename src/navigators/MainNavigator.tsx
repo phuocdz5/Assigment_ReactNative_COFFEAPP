@@ -1,7 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import TabNavigator from './TabNavigator';
-import { DetailsScreen } from '../screens';
+import { DetailsScreen, PersonalDetailsScreen, SettingScreen } from '../screens';
 
 const MainNavigator = () => {
     const Stack = createNativeStackNavigator();
@@ -9,6 +9,8 @@ const MainNavigator = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name = "MainNavigator" component={TabNavigator}/>
         <Stack.Screen name = "DetailsScreen" component={DetailsScreen}/>
+        <Stack.Screen name='SettingScreen' component={SettingScreen}/>
+        <Stack.Screen name='PersonalDetailsScreen' component={PersonalDetailsScreen}/>
     </Stack.Navigator>
   )
 }

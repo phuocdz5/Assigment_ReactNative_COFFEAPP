@@ -9,6 +9,8 @@ import FavouriteScreen from "./favourites/FavouriteScreen";
 import HomeScreen from "./home/HomeScreen";
 import NotificationScreen from "./notification/NotificationScreen";
 import DetailsScreen from './home/DetailsScreen/DetailsScreen';
+import SettingScreen from './home/setting/SettingScreen';
+import PersonalDetailsScreen from './home/setting/PersonalDetailsScreen';
 
 export{
     HomeScreen,
@@ -21,5 +23,7 @@ export{
     NotificationScreen,
     EventScreen,
     FavouriteScreen,
-    DetailsScreen
+    DetailsScreen,
+    SettingScreen,
+    PersonalDetailsScreen,
 }
