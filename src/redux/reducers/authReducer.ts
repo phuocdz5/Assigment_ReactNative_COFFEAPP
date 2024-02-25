@@ -1,7 +1,6 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../root";
+import { createSlice } from "@reduxjs/toolkit";
 
-export interface AuthState {
+interface AuthState {
     id: string,
     email: string,
     accesstoken: string,
@@ -26,15 +25,8 @@ const authSlice = createSlice({
 
 export const authReducer = authSlice.reducer;
 export const {addAuth, removeAuth} = authSlice.actions;
-export const getAuth = (state: RootState) => state.authReducer.authData;
-
-// Tạo selector sử dụng createSelector
-export const authSelector = createSelector(
-    [getAuth],
-    (authData) =>{
-        return authData
-    }
-);
+export const authSelector = (state: any) => state.authReducer.authData; 
+ 
 
 
 // initialState là các cái giá trị ban đầu 

@@ -16,6 +16,9 @@ const IMAGES = {
     imageRobustaBeans:"https://i.imgur.com/nfoyUeD.png",
     Back_Icon: require('./back_icon.png'),
     Profile: require('./profile.png'),
+    heart: require('./heart.png'),
+    Coffee: require('./coffee.png'),
+    Milk: require('./milk.png'),
 }
 
 export default IMAGES;

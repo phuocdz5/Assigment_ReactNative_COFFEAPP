@@ -12,12 +12,13 @@ interface Props {
     font?: string;
     styles?: StyleProp<TextStyle>; // ngoài những cái custom mặc định thì thêm styles
     title?: boolean;
+    numberOfLines?: number | undefined;
 }
 
 const TextComponent = (props : Props) => {
-  const {text, color, size, flex, font, styles, title} = props;
+  const {text, color, size, flex, font, styles, title,numberOfLines} = props;
   return (
-    <Text style = {[
+    <Text numberOfLines={numberOfLines} style = {[
         globalStyle.text,
         {
             color: color ?? COLORS.WHITE,  // color của người dùng truyền vào hoặc color tích hợp sẵn

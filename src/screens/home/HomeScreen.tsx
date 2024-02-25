@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { AuthState, authSelector, removeAuth } from '../../redux/reducers/authReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { globalStyle } from '../../styles/globalStyle';
 import COLORS from '../../assets/colors/Colors';

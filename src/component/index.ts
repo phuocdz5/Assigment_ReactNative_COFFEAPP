@@ -7,6 +7,7 @@ import TextComponent from "./TextComponent";
 import CardItemComponent from './CardItemComponent';
 import CategoriesList from './CategoriesList ';
 import ContainerComponent from './ContainerComponent';
+import WeightComponent from './WeightComponent';
 
 export {
     TextComponent, 
@@ -17,5 +18,6 @@ export {
     RowComponent,
     CardItemComponent,
     CategoriesList,
-    ContainerComponent
+    ContainerComponent,
+    WeightComponent
 };
