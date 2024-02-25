@@ -1,17 +1,17 @@
 import { ObjectId } from "mongoose"
 
-interface pricesArray{
-    size:String,
-    price:String,
-    currency:String
+export interface pricesArray{
+    size:string,
+    price:string,
+    currency:string
 }
 export interface products{
     _id:ObjectId,
-    name:String,
-    description:String,
-    roasted:String,
-    imagelink_square:String,
-    imagelink_portrait:String,
+    name:string,
+    description:string,
+    roasted:string,
+    imagelink_square:string,
+    imagelink_portrait:string,
     prices:[pricesArray],
-    type:String
+    type:string
 }

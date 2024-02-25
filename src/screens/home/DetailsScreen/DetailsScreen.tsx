@@ -3,22 +3,28 @@ import React, { useEffect, useState } from 'react'
 import { products } from '../../../models/productsModel';
 import { TextComponent } from '../../../component';
 import { ObjectId } from 'mongoose';
+import { pricesArray } from './../../../models/productsModel';
+
 
 const DetailsScreen = ({route}:any) => {
-    const [dataProduct,setData]= useState<products[]>([]);
-    const [isDataProduct,setIsData]= useState<products[]>([]);
     const [idProduct,setId]= useState('');
-    const [image,setImage]= useState('');
+    const [name, setName]=useState('');
+    const [roasted,setRoasted]= useState('')
+    const [imagelink_portrait,setImagelink_portrait]= useState('');
+    const [prices,setPrices] = useState<pricesArray[]>([]);
+    const [description,setDescription]= useState('')
+    const [dataProduct,setData]= useState<products[]>([]);
     const {data} = route.params
     const dataArray = data[0] ;
     const itemId = data[1] ; 
     
     
+    
     useEffect(() => {
-      const fetchData = async () => {
+      const fetchData =() => {
         setData(dataArray);
         setId(itemId);
-        await handleImage();
+        handleData();
       };
     
       fetchData();
@@ -27,20 +33,25 @@ const DetailsScreen = ({route}:any) => {
     const filteredCoffeeArray =(value:String)=>{
       return dataProduct.filter(item => item._id.toString() === value)
     }
-
-  
-    const handleImage = ()=>{
+    const setValues=(products:products)=>{
+      const { name,roasted, prices,description, imagelink_portrait } = products;
+      setName(name);
+      setRoasted(roasted);
+      setPrices(prices);
+      setDescription(description);
+      setImagelink_portrait(imagelink_portrait)
+    }
+    const handleData = ()=>{
+    
       const specificKeyItem = filteredCoffeeArray(idProduct).find(product => product !== undefined && product !== null);
       if(specificKeyItem){
-        const { name, _id, prices, imagelink_portrait } = specificKeyItem;
-        setImage(imagelink_portrait.valueOf()) 
-
-      }
+        setValues(specificKeyItem)
+      } 
     }
 
   return (
     <View>
-      <Image style={{width:'auto',height:510}} src={image}/>
+      {imagelink_portrait!=""?<Image style={{width:'auto',height:510}} src={imagelink_portrait}/>:undefined}
     </View> 
   )
 }
