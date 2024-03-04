@@ -7,6 +7,7 @@ import { SearchNormal1 } from 'iconsax-react-native';
 import IMAGES from '../assets/images/Images';
 import { FONTFAMILY } from '../../assets/fonts';
 import LinearGradient from 'react-native-linear-gradient';
+import { fakeBaseQuery } from '@reduxjs/toolkit/query';
 
 interface Props{
     image: string;
@@ -14,7 +15,7 @@ interface Props{
     description:string,
     size?:string,
     price:string,
-    quantity?:string,
+    quantity?:number,
     checkCartItem:boolean,
     onPressPlus?: () => void;
 }
@@ -29,7 +30,7 @@ const CoffeeCard = (props:Props) => {
         colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
         style={{padding:15, borderRadius:25,marginEnd:(checkCartItem?undefined:15)}}>
             <RowComponent   justify='space-between' styles={{flexDirection:(checkCartItem?'row':'column')}}>
-                <Image style={{width:126, height:126}}  src={image}/>
+                {image!=''?<Image style={{width:126, height:126}}  src={image}/>:undefined}
                 <View style={{marginStart:10, maxWidth:200}} >
                     <TextComponent text={name} size={13}/>
                     <TextComponent text={description} color={COLORS.HEX_LIGHT_GREY} size={9}/>
@@ -61,7 +62,7 @@ const CoffeeCard = (props:Props) => {
                             <TextComponent text='VNĐ' font={FONTFAMILY.poppins_regular} color={COLORS.BRUNT_ORANGE} size={14}/>
                         </View>}
                         {checkCartItem ?(
-                            <TextComponent size={14} text={quantity} font={FONTFAMILY.poppins_bold} styles={{
+                            <TextComponent size={14} text={`${quantity}`} font={FONTFAMILY.poppins_bold} styles={{
                                 width:50,
                                 height:30, 
                                 backgroundColor:COLORS.HEX_BLACK, 
@@ -83,7 +84,7 @@ const CoffeeCard = (props:Props) => {
     </View>
   )
 }
-const CardItemComponent = ({ checkCartItem, data,navigation }: { checkCartItem: boolean; data: any[] ;navigation:any}) => {
+const CardItemComponent = ({ checkCartItem, data,navigation }: { checkCartItem: boolean; data: any[] ;navigation:any,}) => {
 
     return (
         <FlatList
@@ -104,6 +105,31 @@ const CardItemComponent = ({ checkCartItem, data,navigation }: { checkCartItem: 
         />
     );
 };
+const CartItemComponent = ({ checkCartItem, data,navigation ,price,size}: { checkCartItem: boolean; data: any ;navigation:any,price:string,size:string}) => {
 
+    return (
+        <FlatList
+            data={data}
+            horizontal={false}
+            keyExtractor={(item)=>item._id}
+            renderItem={({ item }) => (
+                <CoffeeCard
+                    checkCartItem={checkCartItem}
+                    image={item.imagelink_square}
+                    name={item.name}
+                    description={item.roasted}
+                    price={price}
+                    size={size}
+                    quantity={1}
+                    onPressPlus={()=>{}}
+                />
+            )}
+            showsHorizontalScrollIndicator={false}
+        />
+    );
+};
 
-export default CardItemComponent
+export {
+    CardItemComponent,
+    CartItemComponent
+}

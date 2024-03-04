@@ -100,7 +100,7 @@ const PersonalDetailsScreen = ({ navigation }: any) => {
                 </RowComponent>
             </SectionComponent>
             <SectionComponent>
-                <TouchableOpacity>
+                <TouchableOpacity >
                     <Image source={IMAGES.Profile} />
                 </TouchableOpacity>
             </SectionComponent>

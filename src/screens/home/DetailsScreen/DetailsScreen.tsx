@@ -9,6 +9,8 @@ import { FONTFAMILY } from '../../../../assets/fonts';
 import COLORS from '../../../assets/colors/Colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { priceselector } from '../../../redux/reducers/pricesReducer';
+import cartAPI from '../../../apis/cartAPI';
+import { authSelector } from '../../../redux/reducers/authReducer';
 
 
 const DetailsScreen = ({navigation,route}:any) => {
@@ -17,15 +19,18 @@ const DetailsScreen = ({navigation,route}:any) => {
     const [roasted,setRoasted]= useState('')
     const [price,setPrice]= useState('')
     const [imagelink_portrait,setImagelink_portrait]= useState('');
+    const [imagelink_square,setImagelink_square]= useState('');
     const [prices,setPrices] = useState<pricesArray[]>([]);
     const [description,setDescription]= useState('')
     const [dataProduct,setData]= useState<products[]>([]);
-    
+    const [dataCart,setDataCart]= useState<products>();
+    const authData = useSelector(authSelector)
     const sizeData = useSelector(priceselector)
     const {data} = route.params//data gửi từ homescreen trong carditemcomponent
     const dataArray = data[0] ;//data gồm dộ dài là 2 nên vị trí 0 tương ứng với toàn bộ products data trong mongoose
     const itemId = data[1] ; //vị trí 1 là id khi nhấn vào flatlist của carditemcomponent lấy được id của sản phẩm trong flatlist được click 
-    
+    const emailAuth = authData.email
+    const quantity = 1
     const getPriceBySize = (productArray: products[], targetSize: string) => {
       for (const product of productArray) {//Lặp mảng product tìm size giống trong mảng prices của products
         const priceInfo = product.prices.find(price => price.size === targetSize);
@@ -51,12 +56,14 @@ const DetailsScreen = ({navigation,route}:any) => {
       return dataProduct.filter(item => item._id.toString() === value)
     }
     const setValues=(products:products)=>{
-      const { name,roasted, prices,description, imagelink_portrait } = products;
+      const { name,roasted, prices,description, imagelink_portrait,imagelink_square } = products;
       setName(name);
       setRoasted(roasted);
       setPrices(prices);
       setDescription(description);
       setImagelink_portrait(imagelink_portrait)
+      setImagelink_square(imagelink_square)
+      setDataCart(products)
     }
     const handleData = ()=>{
     
@@ -66,7 +73,15 @@ const DetailsScreen = ({navigation,route}:any) => {
         setValues(specificKeyItem)
       } 
     }
-
+    const handleAddCart = async()=>{
+      try {
+        const res = await cartAPI.HandleCart('/addCart',{emailAuth,imagelink_square,name,roasted,sizeData,price,quantity},'post')
+        navigation.navigate('Giỏ Hàng')
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
   return (
     <ContainerComponent>
     {imagelink_portrait!=''?<Image src={imagelink_portrait} style={{ width: 'auto', height: '85%' }} />:undefined}
@@ -114,10 +129,10 @@ const DetailsScreen = ({navigation,route}:any) => {
           <TextComponent text='Giá'/>
           <RowComponent>
           <TextComponent text='$' styles = {{marginRight: 10}} size={24} font={FONTFAMILY.poppins_bold} color={COLORS.HEX_ORANGE}/>
-          <TextComponent text={price} font={FONTFAMILY.poppins_bold} size={24}/>
+          <TextComponent text={price!=''?price:'0'} font={FONTFAMILY.poppins_bold} size={24}/>
           </RowComponent>
         </RowComponent>
-        <ButtonComponent  styles={{height:56}} text='Thêm Vào Giỏ Hàng' type='orange'/>
+        <ButtonComponent disable={price!=''?false:true}  styles={{height:56}} text='Thêm Vào Giỏ Hàng' type='orange' onPress={handleAddCart}/>
       </RowComponent>
     </SectionComponent>
   </ContainerComponent>

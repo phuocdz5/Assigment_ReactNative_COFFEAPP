@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { globalStyle } from '../../styles/globalStyle';
 import COLORS from '../../assets/colors/Colors';
-import { ButtonComponent, CardItemComponent, CategoriesList, ContainerComponent, InputComponent, SectionComponent, TextComponent } from '../../component';
+import { ButtonComponent, CategoriesList, ContainerComponent, InputComponent, SectionComponent, TextComponent } from '../../component';
 import RowComponent from './../../component/RowComponent';
 import IMAGES from '../../assets/images/Images';
 import { FONTFAMILY } from '../../../assets/fonts';
@@ -13,6 +13,7 @@ import { CoffeeData } from '../../data/CoffeeData';
 import { BeansCoffeeData } from '../../data/BeansCoffee';
 import productAPI from '../../apis/productAPI';
 import { products } from '../../models/productsModel';
+import { CardItemComponent } from '../../component/CardItemComponent';
 
 const HomeScreen = ({navigation}:any) => {
     const dispatch = useDispatch();
